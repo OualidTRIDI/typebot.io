@@ -1,8 +1,10 @@
 # nixpacks.toml
 
 [phases.setup]
-# Install build tools needed for compiling native Node.js modules like isolated-vm
+# Install system dependencies for node-gyp
 aptPkgs = ['build-essential', 'python3']
+# Explicitly install node-gyp globally to make it available in the PATH
+cmds = ['npm install -g node-gyp']
 
 [start]
 # Command to start the application
