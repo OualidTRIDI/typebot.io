@@ -1,0 +1,9 @@
+# nixpacks.toml
+
+[phases.setup]
+# Install build tools needed for compiling native Node.js modules like isolated-vm
+aptPkgs = ['build-essential', 'python3']
+
+[start]
+# Command to start the application
+cmd = 'pnpm start'
