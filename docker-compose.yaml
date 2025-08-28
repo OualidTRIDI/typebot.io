@@ -1,0 +1,41 @@
+x-typebot-common: &typebot-common
+  restart: always
+  environment:
+    - DATABASE_URL=postgres://postgres:HjB7Rl3REYH0MIhpoAMrvWNeYhtLZYb25sIfBSKoBAvUsaJsiQTEFzMZa65Fre1W@159.69.147.58:5432/postgres
+    - REDIS_URL=redis://default:rh43PPOVibVNvuL8XyKGChpvLQStamgIzjhYcGQN4A7YxwKT7kS2nCx8fuiPfCiL@159.69.147.58:5435/0
+    - ENCRYPTION_SECRET=a1b2j3d4h5f6a1b2c3d4e5f6k1b2c3d4
+    - S3_ACCESS_KEY=lkoeSjwj4TbQDVZuY48D
+    - S3_SECRET_KEY=3dojRdD65QdxcgrOakNpk6eMLdwO4aibLGEa71nI
+    - S3_BUCKET=typebote
+    - S3_ENDPOINT=https://minio-zcw8c40wk4o4ogwkccccsgws.aliexportss.com
+    - SMTP_HOST=smtp.zoho.com
+    - SMTP_PORT=465
+    - SMTP_SECURE=true
+    - SMTP_USERNAME=contact@wsagency-dz.com
+    - SMTP_PASSWORD=8Aeiy5Cev4WQ
+    - NEXT_PUBLIC_SMTP_FROM="WS Agency <contact@wsagency-dz.com>"
+  networks:
+    - typebot-network
+
+services:
+  typebot-builder:
+    <<: *typebot-common
+    image: baptistearno/typebot-builder:latest
+    environment:
+      - NEXTAUTH_URL=https://bot.wsagency-dz.com
+      - NEXT_PUBLIC_VIEWER_URL=https://nextcloud.wsagency-dz.com
+      - NEXT_PUBLIC_BUILDER_URL=https://bot.wsagency-dz.com
+    ports:
+      - "8080:3000"
+
+  typebot-viewer:
+    <<: *typebot-common
+    image: baptistearno/typebot-viewer:latest
+    environment:
+      - NEXT_PUBLIC_VIEWER_URL=https://nextcloud.wsagency-dz.com
+    ports:
+      - "8081:3000"
+
+networks:
+  typebot-network:
+    driver: bridge
