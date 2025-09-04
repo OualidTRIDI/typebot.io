@@ -3,9 +3,9 @@ services:
     image: baptistearno/typebot-builder:latest
     restart: always
     environment:
-      - NEXTAUTH_URL=https://bot.wsagency-dz.com
-      - NEXT_PUBLIC_VIEWER_URL=https://nextcloud.wsagency-dz.com
-      - NEXT_PUBLIC_BUILDER_URL=https://bot.wsagency-dz.com
+      - NEXTAUTH_URL=https://builder.example.com
+      - NEXT_PUBLIC_VIEWER_URL=https://viewer.example.com
+      - NEXT_PUBLIC_BUILDER_URL=https://builder.example.com
     ports:
       - "8082:3000"
     networks:
@@ -15,7 +15,7 @@ services:
     image: baptistearno/typebot-viewer:latest
     restart: always
     environment:
-      - NEXT_PUBLIC_VIEWER_URL=https://nextcloud.wsagency-dz.com
+      - NEXT_PUBLIC_VIEWER_URL=https://viewer.example.com
     ports:
       - "8081:3000"
     networks:
